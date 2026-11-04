@@ -1,0 +1,52 @@
+{
+  "name": "ayo-food-delivery-backend",
+  "version": "1.0.0",
+  "description": "AYO Food Delivery — NestJS + MongoDB REST API",
+  "author": "AYO Team",
+  "license": "MIT",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main",
+    "start:dev": "node -e \"const {execSync}=require('child_process');try{const r=execSync('netstat -ano | findstr :3000').toString();const m=r.match(/LISTENING\\s+(\\d+)/);if(m)execSync('taskkill /F /PID '+m[1]);}catch(e){}\" && nodemon --watch src --ext ts,json --exec \"ts-node -r tsconfig-paths/register src/main.ts\"",
+    "start:debug": "nodemon --watch src --ext ts,json --exec \"ts-node --inspect -r tsconfig-paths/register src/main.ts\"",
+    "start:prod": "node dist/main.js",
+    "kill-port": "node -e \"const {execSync}=require('child_process');try{const r=execSync('netstat -ano | findstr :3000').toString();const m=r.match(/LISTENING\\s+(\\d+)/);if(m){execSync('taskkill /F /PID '+m[1]);console.log('Killed PID '+m[1]);}else{console.log('Port 3000 is free');}}catch(e){console.log('Port 3000 is free');}\"",
+    "seed": "ts-node -r tsconfig-paths/register src/database/seed.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^12.2.0",
+    "@nestjs/config": "^12.0.1",
+    "@nestjs/core": "^12.2.0",
+    "@nestjs/jwt": "^12.0.3",
+    "@nestjs/mongoose": "^12.0.0",
+    "@nestjs/passport": "^12.0.0",
+    "@nestjs/platform-express": "^12.2.0",
+    "@nestjs/swagger": "^12.0.4",
+    "@types/nodemailer": "^8.0.2",
+    "bcryptjs": "^3.0.3",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "mongoose": "^9.11.4",
+    "nodemailer": "^10.2.1",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "uuid": "^14.0.3"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^12.0.10",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/passport-local": "^1.0.38",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^6.0.3"
+  }
+}
